@@ -510,4 +510,4 @@ CREATE TABLE `notice_table` (
 COMMIT;
 
 INSERT INTO `user_table` (`user_id`, `name`, `role_id`, `email`, `password`, `mobile_no`) VALUES
-(1, 'System Admin', 1, 'admin@gmail.com', '$2b$12$MYhCpfm1MI9cxlHh1JSbU.6sAbteFKjXL8wU2V02VSxjlt3lp5tty', '9000000001'),
+(1, 'System Admin', 1, 'admin@gmail.com', '$2b$12$MYhCpfm1MI9cxlHh1JSbU.6sAbteFKjXL8wU2V02VSxjlt3lp5tty', '9000000001');

@@ -80,31 +80,31 @@ export default function Dashboard() {
 
       const pending = await api.get("/organizations?status=pending");
 
-      setPendingApprovals(pending.data.data || []);
+      setPendingApprovals(pending.data || []);
 
       /* Organizations */
 
-      const organizationRes = await api.get("/organizations");
+      const organizationRes = await api.get("/organizations?status=approved");
 
-      setOrganizations(organizationRes.data.data || []);
+      setOrganizations(organizationRes.data || []);
 
       /* Departments */
 
       const departmentRes = await api.get("/departments");
 
-      setDepartments(departmentRes.data.data || []);
+      setDepartments(departmentRes.data || []);
 
       /* Trainings */
 
       const trainingRes = await api.get("/trainings");
 
-      setTrainings(trainingRes.data.data || []);
+      setTrainings(trainingRes.data || []);
 
       /* Placements */
 
       const placementRes = await api.get("/placements");
 
-      setPlacements(placementRes.data.data || []);
+      setPlacements(placementRes.data || []);
     } catch (err) {
       console.error(err);
 
@@ -297,29 +297,28 @@ export default function Dashboard() {
                 </div>
               ) : (
                 <div className="space-y-4">
-                  {pendingApprovals.map((company) => (
-                    <div
-                      key={company.user_id}
-                      className="flex items-center justify-between border-b border-orbit-border pb-3 last:border-none"
+                  {pendingApprovals.slice(0,5).map((company)=>(
+                    <div 
+                    key={company.organization_id}
+                    className="flex items-center justify-between border-b border-orbit-border pb-3 last:border-none"
                     >
                       <div>
                         <h4 className="font-medium text-orbit-text-primary">
-                          {company.user_table?.name}
+                          {company.user_table?.name || "Organization Name Not Available"}
                         </h4>
-
                         <p className="text-xs text-slate-500">
-                          {company.user_table?.email}
+                          {company.user_table?.email || "Email Not Available"}
                         </p>
-                      </div>
 
-                      <Button
-                        size="sm"
-                        variant="outline"
-                        onClick={() =>
-                          navigate("/super-admin/dashboard?view=view-companies")
-                        }
+                      </div>
+                      <Button 
+                      size="sm"
+                      variant="outline"
+                      onClick={()=>
+                        navigate(`/super-admin/dashboard?view=view-company&companyId=${company.organization_id}`)
+                      }
                       >
-                        <Eye size={15} />
+                        <Eye size={16} className="mr-2" />
                       </Button>
                     </div>
                   ))}
@@ -441,7 +440,7 @@ export default function Dashboard() {
               <div className="flex items-center justify-between">
                 <span>Departments</span>
 
-                <Badge>{departments.length}</Badge>
+                <Badge>{metrics.departmentCount}</Badge>
               </div>
             </CardHeader>
 

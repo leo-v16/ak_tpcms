@@ -39,7 +39,7 @@ export function SignUpPage() {
   const [email, setEmail] = useState('')
   const [mobile_no, setMobile_no] = useState('')
   const [industry, setIndustry] = useState('')
-  const [website, setWebsite] = useState('')
+  // const [website, setWebsite] = useState('')
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
 
@@ -204,17 +204,17 @@ export function SignUpPage() {
        * Website is optional.
        * Only send it when provided.
        */
-      if (website.trim()) {
-        body.website = website.trim()
-      }
+      // if (website.trim()) {
+      //   body.website = website.trim()
+      // }
 
       /*
        * Contact person is optional from the
        * current backend contract.
        */
-      if (contactPerson.trim()) {
-        body.contact_person = contactPerson.trim()
-      }
+      // if (contactPerson.trim()) {
+      //   body.contact_person = contactPerson.trim()
+      // }
 
       if (docUrl) {
         body.document_url = docUrl
@@ -598,7 +598,7 @@ export function SignUpPage() {
               required
             />
 
-
+{/* 
             <Input
               label="Contact Person"
               type="text"
@@ -615,7 +615,7 @@ export function SignUpPage() {
                 )
               }
               required
-            />
+            /> */}
 
           </div>
 
@@ -791,7 +791,7 @@ export function SignUpPage() {
               WEBSITE
           ================================================= */}
 
-          <Input
+          {/* <Input
             label="Company Website (Optional)"
             type="url"
             placeholder="https://techcorp.com"
@@ -804,7 +804,7 @@ export function SignUpPage() {
             onChange={(e) =>
               setWebsite(e.target.value)
             }
-          />
+          /> */}
 
 
           {/* =================================================
